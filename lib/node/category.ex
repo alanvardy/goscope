@@ -12,6 +12,7 @@ defmodule Goscope.Node.Category do
     "[m]odel",
     "[d]one"
   ]
+  @doc "Create a node struct with category"
   def create() do
     title =
       @cat_options
@@ -36,14 +37,17 @@ defmodule Goscope.Node.Category do
     |> create_child(breadcrumbs, children)
   end
 
+  # Done adding children
   defp create_child("d", _breadcrumbs, children) do
     children
   end
 
+  # Add a model
   defp create_child("m", breadcrumbs, children) do
     create_child(:new, breadcrumbs, [children | Node.new_model(breadcrumbs)])
   end
 
+  # Bad input
   defp create_child(_, breadcrumbs, children) do
     create_child(:new, breadcrumbs, children)
   end
