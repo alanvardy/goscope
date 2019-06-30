@@ -6,7 +6,7 @@ defmodule Goscope.Node.Model do
         %{
           create_options: create_options,
           type: type,
-          child_options: child_options
+          child_types: child_types,
         },
         breadcrumbs
       ) do
@@ -22,29 +22,33 @@ defmodule Goscope.Node.Model do
         %Node{
           name: title,
           type: type,
-          children: create_child(:new, child_options, ["#{title}:#{type}" | breadcrumbs])
+          children: create_child(:new, child_types, ["#{title}:#{type}" | breadcrumbs])
         }
     end
   end
 
-  defp create_child(input, options, breadcrumbs, _children \\ [])
+  defp create_child(input, child_types, breadcrumbs, _children \\ [])
 
-  defp create_child(:new, options, breadcrumbs, children) do
-    options
+  defp create_child(:new, child_types, breadcrumbs, children) do
+    child_types.selection
     |> List.insert_at(0, Console.breadcrumify(breadcrumbs))
     |> Console.get_input()
-    |> create_child(options, breadcrumbs, children)
+    |> String.to_atom()
+    |> create_child(child_types, breadcrumbs, children)
   end
 
-  defp create_child("d", _options, _breadcrumbs, children) do
-    children
-  end
-
-  defp create_child("a", options, breadcrumbs, children) do
-    create_child(:new, options, breadcrumbs, [children | Node.new_attribute(breadcrumbs)])
-  end
-
-  defp create_child(_, options, breadcrumbs, children) do
-    create_child(:new, options, breadcrumbs, children)
+  defp create_child(child, child_types, breadcrumbs, children) do
+    functions = child_types.functions
+    keys = functions
+    |> Map.keys
+    cond do
+      child in keys ->
+        children = [children | apply(Node, functions[child], [breadcrumbs])]
+        create_child(:new, child_types, breadcrumbs, children)
+      child == :d ->
+        children
+      true ->
+        create_child(:new, child_types, breadcrumbs, children)
+    end
   end
 end
