@@ -1,13 +1,15 @@
 defmodule Goscope.Node do
-  alias Goscope.Node.{Attribute, Category, Model}
+  @moduledoc "Builds nodes in AST"
+  alias Goscope.Node.{Attribute, Category, Model, Template}
   defstruct name: nil, type: nil, children: []
 
-  def new_category() do
+  def new_category do
     Category.create()
   end
 
   def new_model(breadcrumbs) do
-    Model.create(breadcrumbs)
+    Template.model()
+    |> Model.create(breadcrumbs)
   end
 
   def new_attribute(breadcrumbs) do

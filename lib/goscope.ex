@@ -1,4 +1,5 @@
 defmodule Goscope do
+  @moduledoc "Builds AST for scoping Rails projects"
   alias Goscope.Console
   alias Goscope.Node
 

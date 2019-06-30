@@ -1,5 +1,7 @@
 defmodule Goscope.Node.Category do
+  @moduledoc false
   alias Goscope.{Console, Node}
+  alias Goscope.Node.Template
 
   @create_options [
     "Enter category name:",
@@ -13,7 +15,7 @@ defmodule Goscope.Node.Category do
     "[d]one"
   ]
   @doc "Create a node struct with category"
-  def create() do
+  def create do
     title =
       @create_options
       |> Console.get_input()
@@ -29,8 +31,6 @@ defmodule Goscope.Node.Category do
 
   defp create_child(input, breadcrumbs, _children \\ [])
   defp create_child(:new , breadcrumbs, children) do
-
-
     @child_options
     |> List.insert_at(0, Console.breadcrumify(breadcrumbs))
     |> Console.get_input()
