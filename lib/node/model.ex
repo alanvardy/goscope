@@ -54,7 +54,7 @@ defmodule Goscope.Node.Model do
 
   defp build_create_input(type) do
     [
-      "Enter #{String.downcase(type)} name:",
+      "Enter [#{String.downcase(type)} name]",
       "[c]ancel"
     ]
   end
