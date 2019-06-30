@@ -13,6 +13,11 @@ defmodule Goscope.Node do
     |> Behaviour.create(breadcrumbs)
   end
 
+  def new_action(breadcrumbs) do
+    Template.action()
+    |> Behaviour.create(breadcrumbs)
+  end
+
   def new_attribute(breadcrumbs) do
     Template.attribute()
     |> Behaviour.create(breadcrumbs)
