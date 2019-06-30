@@ -4,8 +4,7 @@ defmodule Goscope do
   alias Goscope.Node
 
   @options [
-    "Do you wish to create a CATEGORY?",
-    "add [c]ategory",
+    "Add [c]ategory",
     "[q]uit"
   ]
   @spec main(any) :: no_return
@@ -16,10 +15,9 @@ defmodule Goscope do
   end
 
   defp menu(categories) do
-    display = Console.render_display([], categories)
+    Console.render_display([], categories)
     input =
       @options
-      |> List.insert_at(0, display)
       |> Console.get_input()
 
     categories
