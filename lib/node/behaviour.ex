@@ -5,7 +5,7 @@ defmodule Goscope.Node.Behaviour do
   def create(
         %{
           type: type,
-          child_types: child_types,
+          child_types: child_types
         },
         breadcrumbs
       ) do
@@ -30,8 +30,10 @@ defmodule Goscope.Node.Behaviour do
   defp create_child(input, child_types, breadcrumbs, _children \\ [])
 
   defp create_child(:new, child_types, breadcrumbs, children) do
+    display = Console.render_display(breadcrumbs, children)
+
     child_types.selection
-    |> List.insert_at(0, Console.breadcrumify(breadcrumbs))
+    |> List.insert_at(0, display)
     |> Console.get_input()
     |> String.to_atom()
     |> create_child(child_types, breadcrumbs, children)
@@ -39,14 +41,19 @@ defmodule Goscope.Node.Behaviour do
 
   defp create_child(child, child_types, breadcrumbs, children) do
     functions = child_types.functions
-    keys = functions
-    |> Map.keys
+
+    keys =
+      functions
+      |> Map.keys()
+
     cond do
       child in keys ->
-        children = [children | apply(Node, functions[child], [breadcrumbs])]
+        children = [apply(Node, functions[child], [breadcrumbs]) | children]
         create_child(:new, child_types, breadcrumbs, children)
+
       child == :d ->
         children
+
       true ->
         create_child(:new, child_types, breadcrumbs, children)
     end

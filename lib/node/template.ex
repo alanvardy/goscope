@@ -5,7 +5,7 @@ defmodule Goscope.Node.Template do
       type: "Category",
       child_types: %{
         selection: [
-          "Add [m]model",
+          "Add [m]odel",
           "[d]one"
         ],
         functions: %{
