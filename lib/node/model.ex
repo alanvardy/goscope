@@ -4,14 +4,14 @@ defmodule Goscope.Node.Model do
 
   def create(
         %{
-          create_options: create_options,
           type: type,
           child_types: child_types,
         },
         breadcrumbs
       ) do
     title =
-      create_options
+      type
+      |> build_create_input()
       |> Console.get_input()
 
     case title do
@@ -50,5 +50,12 @@ defmodule Goscope.Node.Model do
       true ->
         create_child(:new, child_types, breadcrumbs, children)
     end
+  end
+
+  defp build_create_input(type) do
+    [
+      "Enter #{String.downcase(type)} name:",
+      "[c]ancel"
+    ]
   end
 end
