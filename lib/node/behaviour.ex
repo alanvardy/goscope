@@ -1,4 +1,4 @@
-defmodule Goscope.Node.Model do
+defmodule Goscope.Node.Behaviour do
   @moduledoc false
   alias Goscope.{Console, Node}
 

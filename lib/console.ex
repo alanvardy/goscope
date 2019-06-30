@@ -23,7 +23,7 @@ defmodule Goscope.Console do
       |> Enum.reverse()
       |> Enum.join(" -> ")
 
-    break() <> br
+    break() <> br <> "\n"
   end
 
   defp break do
