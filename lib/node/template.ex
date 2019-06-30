@@ -2,14 +2,18 @@ defmodule Goscope.Node.Template do
   @moduledoc "Node types for AST"
 
   @selections %{
+    crud: "Add [c]rud",
     model: "Add [m]odel",
     action: "Add [a]ction",
+    method: "Add m[e]thod",
     attribute: "Add a[t]tribute"
   }
 
   @functions %{
+    crud: %{c: :new_crud},
     model: %{m: :new_model},
     action: %{a: :new_action},
+    method: %{e: :new_method},
     attribute: %{t: :new_attribute}
   }
 
@@ -17,6 +21,7 @@ defmodule Goscope.Node.Template do
     children = [
       :model,
       :action,
+      :method,
       :attribute
     ]
 
@@ -25,11 +30,23 @@ defmodule Goscope.Node.Template do
 
   def model do
     children = [
+      :crud,
       :action,
+      :method,
       :attribute
     ]
 
     build_map("Model", children)
+  end
+
+  def crud do
+    children = [
+      :action,
+      :method,
+      :attribute
+    ]
+
+    build_map("CRUD", children)
   end
 
   def action do
@@ -38,6 +55,14 @@ defmodule Goscope.Node.Template do
     ]
 
     build_map("Action", children)
+  end
+
+  def method do
+    children = [
+      :attribute
+    ]
+
+    build_map("Method", children)
   end
 
   def attribute do
