@@ -1,5 +1,5 @@
 defmodule Goscope.Node do
-  alias Goscope.Node.{Category, Model}
+  alias Goscope.Node.{Attribute, Category, Model}
   defstruct name: nil, type: nil, children: []
 
   def new_category() do
@@ -10,7 +10,7 @@ defmodule Goscope.Node do
     Model.create(breadcrumbs)
   end
 
-  def new_attribute(_breadcrumbs) do
-    "YAY NEW ATTRUBUTES"
+  def new_attribute(breadcrumbs) do
+    Attribute.create(breadcrumbs)
   end
 end

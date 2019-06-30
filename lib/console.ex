@@ -17,18 +17,20 @@ defmodule Goscope.Console do
   end
 
   def breadcrumify(breadcrumbs) do
-    breadcrumbs
-    |> Enum.reverse
-    |> Enum.join(" -> ")
+    br =
+      breadcrumbs
+      |> Enum.reverse()
+      |> Enum.join(" -> ")
+
+    break() <> br
   end
 
   defp break do
-    IO.puts("\n\n---------------------\n")
+    "\n\n---------------------\n"
   end
 
   defp get do
     IO.gets("> ")
     |> String.trim()
-    |> String.downcase()
   end
 end

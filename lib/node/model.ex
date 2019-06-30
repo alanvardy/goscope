@@ -1,7 +1,7 @@
 defmodule Goscope.Node.Model do
   alias Goscope.{Console, Node}
 
-  @model_options [
+  @create_options [
     "Enter model name:",
     "[c]ancel"
   ]
@@ -14,7 +14,7 @@ defmodule Goscope.Node.Model do
   ]
   def create(breadcrumbs) do
     title =
-      @model_options
+      @create_options
       |> Console.get_input()
 
     case title do
