@@ -5,7 +5,7 @@ defmodule Goscope do
 
   @options [
     "Do you wish to create a CATEGORY?",
-    "[c]reate a category",
+    "add [c]ategory",
     "[q]uit"
   ]
   def main(_args \\ []) do

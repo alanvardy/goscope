@@ -3,32 +3,41 @@ defmodule Goscope.Node.Template do
   def category do
     %{
       type: "Category",
-      create_options: [
-        "Enter category name:",
-        "[c]ancel"
-      ],
-      child_options: [
-        "[m]odel",
-        "[d]one"
-      ]
+      child_types: %{
+        selection: [
+          "Add [m]model",
+          "[d]one"
+        ],
+        functions: %{
+          m: :new_model
+        }
+      }
     }
   end
 
   def model do
     %{
       type: "Model",
-      create_options: [
-        "Enter model name:",
-        "[c]ancel"
-      ],
-        child_types: %{
-          selection: [
-            "[a]ttribute",
-            "[d]one"
-          ],
+      child_types: %{
+        selection: [
+          "Add [a]ttribute",
+          "[d]one"
+        ],
         functions: %{
           a: :new_attribute
         }
+      }
+    }
+  end
+
+  def attribute do
+    %{
+      type: "Attribute",
+      child_types: %{
+        selection: [
+          "[d]one"
+        ],
+        functions: %{}
       }
     }
   end
