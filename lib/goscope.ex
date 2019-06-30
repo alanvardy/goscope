@@ -1,7 +1,9 @@
 defmodule Goscope do
-  alias Goscope.{Category, Print}
+  alias Goscope.Console
+  alias Goscope.Node
 
-  @commands [
+  @options [
+    "Do you wish to create a CATEGORY?",
     "[c]reate a category",
     "[q]uit"
   ]
@@ -11,28 +13,27 @@ defmodule Goscope do
     menu([])
   end
 
-  defp menu(cats) do
-    IO.puts("Do you wish to create a CATEGORY?")
+  defp menu(categories) do
+    input =
+      @options
+      |> Console.get_input()
 
-    input = @commands
-    |> Print.get_input
-
-    cats = process_input(cats, input)
-
-    menu(cats)
+    categories
+    |> process_input(input)
+    |> menu()
   end
 
-  defp process_input(cats, "c") do
-    [cats | Category.create]
+  defp process_input(categories, "c") do
+    [categories | Node.new_category()]
   end
 
-  defp process_input(_cats, "q") do
-    Print.response("Goodbye!")
+  defp process_input(_categories, "q") do
+    Console.response("Goodbye!")
     System.halt(0)
   end
 
-  defp process_input(cats, _) do
-    Print.response("Invalid input, please try again")
-    menu(cats)
+  defp process_input(categories, _) do
+    Console.response("Invalid input, please try again")
+    menu(categories)
   end
 end
