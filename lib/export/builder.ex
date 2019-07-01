@@ -1,11 +1,15 @@
 defmodule Goscope.Export.Builder do
   @headers [
-    "First",
-    "Second"
+    "Effort",
+    "Risk",
+    "Category",
+    "Hours",
+    "Feature",
+    "Notes"
   ]
   def output(file, categories) do
     categories
-    |> rows()
+    |> build_category
     |> Enum.reverse()
     |> List.insert_at(0, @headers)
     |> CSV.encode()
@@ -14,16 +18,23 @@ defmodule Goscope.Export.Builder do
     file
   end
 
-  defp rows(data, agg \\ [])
-  defp rows([], agg), do: agg
+  defp build_category(categories, agg \\ [])
+  defp build_category([], agg), do: agg
 
-  defp rows([head | tail], agg) do
-    agg = agg ++ build_row(head)
-    agg = rows(head.children, agg)
-    rows(tail, agg)
+  defp build_category([head | tail], agg) do
+    new_agg = rows(head.children, head.name, agg)
+    build_category(tail, agg ++ new_agg)
   end
 
-  defp build_row(item) do
-    [[item.name]]
+  defp rows([], _cat, agg), do: agg
+
+  defp rows([head | tail], cat, agg) do
+    agg = agg ++ build_row(head, cat)
+    agg = rows(head.children, cat, agg)
+    rows(tail, cat, agg)
+  end
+
+  defp build_row(item, cat) do
+    [["", "", "", cat, item.name, ""]]
   end
 end
