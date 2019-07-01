@@ -1,10 +1,10 @@
 defmodule Goscope do
   @moduledoc "Builds AST for scoping Rails projects"
-  alias Goscope.Console
-  alias Goscope.Node
+  alias Goscope.{Console, Export, Node}
 
   @options [
     "Add [c]ategory",
+    "E[x]port CSV",
     "[q]uit"
   ]
   @spec main(any) :: no_return
@@ -27,6 +27,10 @@ defmodule Goscope do
 
   defp process_input(categories, "c") do
     [Node.new_category() | categories]
+  end
+
+  defp process_input(categories, "x") do
+    Export.csv(categories)
   end
 
   defp process_input(_categories, "q") do
