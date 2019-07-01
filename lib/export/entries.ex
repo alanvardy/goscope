@@ -1,6 +1,7 @@
 defmodule Goscope.Export.Entries do
   @moduledoc "Specified entries for CSV files"
 
+  @doc "CSV headers"
   def headers do
     [
       "Effort",
@@ -12,10 +13,12 @@ defmodule Goscope.Export.Entries do
     ]
   end
 
+  @doc "CSV entries for the Model node"
   def build(%{name: name, type: "Model"}, cat) do
     [[1, 1, "", cat, "Add model: #{name}", ""]]
   end
 
+  @doc "CSV entries for the CRUD (Create Read Update Destroy) node"
   def build(%{name: name, type: "CRUD"}, cat) do
     [
       [1, 1, "", cat, "Add #{name}Controller", ""],
@@ -38,6 +41,7 @@ defmodule Goscope.Export.Entries do
     ]
   end
 
+  @doc "CSV entries for the Method node"
   def build(%{name: name, type: "Method"}, cat) do
     [
       [0.5, 1, "", cat, "Add #{name} method to model", ""],
@@ -46,6 +50,7 @@ defmodule Goscope.Export.Entries do
     ]
   end
 
+  @doc "CSV entries for the Action node"
   def build(%{name: name, type: "Action"}, cat) do
     [
       [1, 1, "", cat, "Add #{name} action to controller", ""],
@@ -57,6 +62,7 @@ defmodule Goscope.Export.Entries do
     ]
   end
 
+  @doc "CSV entries for the Attribute node"
   def build(%{name: name, type: "Attribute"}, cat) do
     [
       [0.25, 1, "", cat, "Add #{name} attribute", ""],

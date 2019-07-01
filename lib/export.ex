@@ -9,10 +9,12 @@ defmodule Goscope.Export do
   end
 
   def csv(categories) do
+    output = Builder.build(categories)
+
     "Enter a filename without extension"
     |> Console.get_input()
     |> CSVFile.create()
-    |> Builder.output(categories)
+    |> CSVFile.write(output)
     |> File.close()
 
     IO.puts("File successfully created!")

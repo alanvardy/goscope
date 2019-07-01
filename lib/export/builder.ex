@@ -2,15 +2,13 @@ defmodule Goscope.Export.Builder do
   @moduledoc "Builds output for CSV files"
   alias Goscope.Export.Entries
 
-  def output(file, categories) do
-    categories
+  def build(categories) do
+    output = categories
     |> build_category
     |> Enum.reverse()
     |> List.insert_at(0, Entries.headers())
-    |> CSV.encode()
-    |> Enum.each(&IO.write(file, &1))
 
-    file
+    {output}
   end
 
   defp build_category(categories, agg \\ [])
