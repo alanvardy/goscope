@@ -1,4 +1,5 @@
 defmodule Goscope.Export.Entries do
+
   def headers do
     [
       "Effort",
@@ -11,7 +12,7 @@ defmodule Goscope.Export.Entries do
   end
 
   def build(%{name: name, type: "Model"}, cat) do
-    [["", "", "", cat, "Add model: #{name}", ""]]
+    [[1, 1, "", cat, "Add model: #{name}", ""]]
   end
 
   def build(%{name: name, type: "CRUD"}, cat) do
@@ -38,29 +39,29 @@ defmodule Goscope.Export.Entries do
 
   def build(%{name: name, type: "Method"}, cat) do
     [
-      ["", "", "", cat, "Add #{name} method to model", ""],
-      ["", "", "", cat, "EMAIL FOR #{name} METHOD?", ""],
-      ["", "", "", cat, "Add Logging for #{name} method", ""]
+      [0.5, 1, "", cat, "Add #{name} method to model", ""],
+      [0.5, 1, "", cat, "EMAIL FOR #{name} METHOD?", ""],
+      [0.5, 1, "", cat, "Add Logging for #{name} method", ""]
     ]
   end
 
   def build(%{name: name, type: "Action"}, cat) do
     [
-      ["", "", "", cat, "Add #{name} action to controller", ""],
-      ["", "", "", cat, "Add route for #{name} action", ""],
-      ["", "", "", cat, "Add #{name} to model", ""],
-      ["", "", "", cat, "Add authorization for #{name} action", ""],
-      ["", "", "", cat, "EMAIL FOR #{name} ACTION?", ""],
-      ["", "", "", cat, "Add Logging for #{name} action", ""]
+      [1, 1, "", cat, "Add #{name} action to controller", ""],
+      [0.5, 1, "", cat, "Add route for #{name} action", ""],
+      [1, 1, "", cat, "Add #{name} action to model", ""],
+      [0.5, 1, "", cat, "Add authorization for #{name} action", ""],
+      [0.5, 1, "", cat, "EMAIL FOR #{name} ACTION?", ""],
+      [0.5, 1, "", cat, "Add Logging for #{name} action", ""]
     ]
   end
 
   def build(%{name: name, type: "Attribute"}, cat) do
     [
-      ["", "", "", cat, "Add #{name} attribute", ""],
-      ["", "", "", cat, "Add Validations for #{name} attribute", ""],
-      ["", "", "", cat, "Add migration for old records", ""],
-      ["", "", "", cat, "Add #{name} attribute to datatables", ""]
+      [0.25, 1, "", cat, "Add #{name} attribute", ""],
+      [0.25, 1, "", cat, "Add Validations for #{name} attribute", ""],
+      [0.5, 1, "", cat, "Add migration for old records", ""],
+      [0.5, 1, "", cat, "Add #{name} attribute to datatables", ""]
     ]
   end
 end
