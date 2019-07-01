@@ -1,4 +1,5 @@
 defmodule Goscope.Console.Input do
+  @moduledoc "Handles getting input from the user"
   def request(commands) when is_list(commands) do
     commands
     |> Enum.each(fn c -> IO.puts(c) end)

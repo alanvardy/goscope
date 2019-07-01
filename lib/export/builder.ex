@@ -1,4 +1,5 @@
 defmodule Goscope.Export.Builder do
+  @moduledoc "Builds output for CSV files"
   alias Goscope.Export.Entries
 
   def output(file, categories) do

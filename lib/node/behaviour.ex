@@ -2,13 +2,7 @@ defmodule Goscope.Node.Behaviour do
   @moduledoc false
   alias Goscope.{Console, Node}
 
-  def create(
-        %{
-          type: type,
-          child_types: child_types
-        },
-        breadcrumbs
-      ) do
+  def create(%{type: type, child_types: child_types}, breadcrumbs) do
     title =
       type
       |> build_create_input()
@@ -42,12 +36,8 @@ defmodule Goscope.Node.Behaviour do
   defp create_child(child, child_types, breadcrumbs, children) do
     functions = child_types.functions
 
-    keys =
-      functions
-      |> Map.keys()
-
     cond do
-      child in keys ->
+      child in Map.keys(functions) ->
         children = [apply(Node, functions[child], [breadcrumbs]) | children]
         create_child(:new, child_types, breadcrumbs, children)
 

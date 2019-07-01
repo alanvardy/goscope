@@ -1,4 +1,5 @@
 defmodule Goscope.Export.Entries do
+  @moduledoc "Specified entries for CSV files"
 
   def headers do
     [

@@ -1,6 +1,7 @@
 defmodule Goscope.Export do
-  alias Goscope.Export.{Builder, CSVFile}
+  @moduledoc "For exporting data in a useful format"
   alias Goscope.Console
+  alias Goscope.Export.{Builder, CSVFile}
 
   def csv([]) do
     IO.puts("Nothing to print")
