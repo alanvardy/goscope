@@ -1,17 +1,11 @@
 defmodule Goscope.Export.Builder do
-  @headers [
-    "Effort",
-    "Risk",
-    "Category",
-    "Hours",
-    "Feature",
-    "Notes"
-  ]
+  alias Goscope.Export.Entries
+
   def output(file, categories) do
     categories
     |> build_category
     |> Enum.reverse()
-    |> List.insert_at(0, @headers)
+    |> List.insert_at(0, Entries.headers())
     |> CSV.encode()
     |> Enum.each(&IO.write(file, &1))
 
@@ -35,6 +29,8 @@ defmodule Goscope.Export.Builder do
   end
 
   defp build_row(item, cat) do
-    [["", "", "", cat, item.name, ""]]
+    item
+    |> Entries.build(cat)
+    |> Enum.reverse()
   end
 end
