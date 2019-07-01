@@ -3,6 +3,7 @@ defmodule Goscope.Export do
   alias Goscope.Console
   alias Goscope.Export.{Builder, CSVFile}
 
+  @spec csv([List.t() | %{children: [any], name: any}]) :: [List.t() | %{children: [any], name: any}]
   def csv([]) do
     IO.puts("Nothing to print")
     []
