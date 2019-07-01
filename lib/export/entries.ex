@@ -31,8 +31,8 @@ defmodule Goscope.Export.Entries do
       [1, 1, "", cat, "Add #{name}/show page", ""],
       [1, 1, "", cat, "Add #{name}/_form partial", ""],
       [0.5, 1, "", cat, "Add routes for CRUD actions in #{name}Controller", ""],
-      [1, 1, "", cat, "Add #{name} Datatable", ""],
-      [0.5, 1, "", cat, "Add Logging for all actions in #{name}Controller", ""],
+      [1, 1, "", cat, "Add #{name} datatable", ""],
+      [0.5, 1, "", cat, "Add logging for all actions in #{name}Controller", ""],
       [0.5, 1, "", cat, "Add authorization for all actions in #{name}Controller", ""]
     ]
   end
@@ -41,7 +41,7 @@ defmodule Goscope.Export.Entries do
     [
       [0.5, 1, "", cat, "Add #{name} method to model", ""],
       [0.5, 1, "", cat, "EMAIL FOR #{name} METHOD?", ""],
-      [0.5, 1, "", cat, "Add Logging for #{name} method", ""]
+      [0.5, 1, "", cat, "Add logging for #{name} method", ""]
     ]
   end
 
@@ -52,14 +52,14 @@ defmodule Goscope.Export.Entries do
       [1, 1, "", cat, "Add #{name} action to model", ""],
       [0.5, 1, "", cat, "Add authorization for #{name} action", ""],
       [0.5, 1, "", cat, "EMAIL FOR #{name} ACTION?", ""],
-      [0.5, 1, "", cat, "Add Logging for #{name} action", ""]
+      [0.5, 1, "", cat, "Add logging for #{name} action", ""]
     ]
   end
 
   def build(%{name: name, type: "Attribute"}, cat) do
     [
       [0.25, 1, "", cat, "Add #{name} attribute", ""],
-      [0.25, 1, "", cat, "Add Validations for #{name} attribute", ""],
+      [0.25, 1, "", cat, "Add validations for #{name} attribute", ""],
       [0.5, 1, "", cat, "Add migration for old records", ""],
       [0.5, 1, "", cat, "Add #{name} attribute to datatables", ""]
     ]
