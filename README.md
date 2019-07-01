@@ -17,4 +17,8 @@ run the binary
 
 ## Use it
 
-The actual interface is very simple, you just keep adding items to the previous item you created, and use `[d]one` to go 'up' the tree one level.
+Goscope builds an abstract syntax tree out of nodes, each node representing a set of scoping items.
+
+The actual interface is very simple, you just keep adding items to the previous item you created, and use `[d]one` to go 'up' the tree one level and add something to that parent..
+
+Once you are finished adding and naming various things, keep selecting `[d]one` until you reach the root of the AST and then `e[x]port` it as a CSV document. The file will be a name of your choosing in the same directory as the binary.
