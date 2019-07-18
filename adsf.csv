@@ -1,8 +1,0 @@
-Effort,Risk,Category,Hours,Feature,Notes
-1,1,,Programming Language,Update Ruby from X.X.X to X.X.X,
-3,1,,Web Framework,Update Rails from X.X to X.X,
-0.5,1,,Dependencies,Upgrade ruby gems to latest versions,
-1.5,1,,Dependencies,Resolve dependency conflicts,
-3,1,,Automated Tests,Update failing automated test cases,15min per failing case
-4,1,,Automated Tests,Add additional automated tests,
-1,1,,Automated Tests,Add continuous integration,
