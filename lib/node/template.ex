@@ -6,7 +6,8 @@ defmodule Goscope.Node.Template do
     model: "Add [m]odel",
     action: "Add [a]ction",
     method: "Add m[e]thod",
-    attribute: "Add a[t]tribute"
+    attribute: "Add a[t]tribute",
+    update: "Add [u]pdate"
   }
 
   @functions %{
@@ -14,7 +15,8 @@ defmodule Goscope.Node.Template do
     model: %{m: :new_model},
     action: %{a: :new_action},
     method: %{e: :new_method},
-    attribute: %{t: :new_attribute}
+    attribute: %{t: :new_attribute},
+    update: %{u: :new_update}
   }
 
   def category do
@@ -22,7 +24,8 @@ defmodule Goscope.Node.Template do
       :model,
       :action,
       :method,
-      :attribute
+      :attribute,
+      :update
     ]
 
     build_map("Category", children)
@@ -69,6 +72,12 @@ defmodule Goscope.Node.Template do
     children = []
 
     build_map("Attribute", children)
+  end
+
+  def update do
+    children = []
+
+    build_map("Update", children)
   end
 
   defp build_map(type, children) do

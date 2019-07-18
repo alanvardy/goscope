@@ -3,12 +3,13 @@ defmodule Goscope.Export.Builder do
   alias Goscope.Export.Entries
 
   def build(categories) do
-    output = categories
-    |> build_category
-    |> Enum.reverse()
-    |> List.insert_at(0, Entries.headers())
+    output =
+      categories
+      |> build_category
+      |> Enum.reverse()
+      |> List.insert_at(0, Entries.headers())
 
-    {output}
+    output
   end
 
   defp build_category(categories, agg \\ [])

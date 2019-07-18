@@ -38,4 +38,10 @@ defmodule Goscope.Node do
     Template.attribute()
     |> Behaviour.create(breadcrumbs)
   end
+
+  @spec new_update([String.t()]) :: Goscope.Node.t()
+  def new_update(breadcrumbs) do
+    Template.update()
+    |> Behaviour.create(breadcrumbs)
+  end
 end
